@@ -1,7 +1,6 @@
 package automaticity_academy.api;
 
-import java.util.Map;
-
+import org.json.JSONObject;
 import org.testng.Assert;
 
 import automaticity_academy.constants.Urls;
@@ -20,7 +19,8 @@ public class BaseApi {
     }
 
     public String getStatusMessage(Response response) {
-        return response.jsonPath().getString("message");
+        int code = getStatusCode(response);
+        return response.statusLine().split(Integer.toString(code))[1].trim();
     }
 
     public void checkStatusMessage(Response response, String message) {
@@ -33,15 +33,18 @@ public class BaseApi {
         Assert.assertEquals(statusCode, code);
     }
 
-    public Response sendApiRequest(String method, String urlEndpoint, String token, Map<String, Object> body) {
+    public Response sendApiRequest(String method, String urlEndpoint, String token, JSONObject body) {
         RequestSpecification request = RestAssured.given();
+
         if (token != null) {
             request.header("Authorization", "Bearer " + token);
         }
         if (body != null) {
-            request.header("Content-type", "application/json");
-            request.body(body);
+            request.header("Accept", "application/json");
+            request.header("Content-Type", "application/json");
+            request.body(body.toString());
         }
+
         switch (method) {
             case "GET":
                 return request.get(Urls.PRODUCTION_URL + "/api/v1" + urlEndpoint);

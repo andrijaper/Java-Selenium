@@ -1,11 +1,6 @@
 package automaticity_academy.constants;
 
 public class ApiConstans {
-
-    public interface StatusMessages {
-        String USER_CREATED = "User created successfully";
-    }
-
     public interface urlEndpoint {
         String LOGIN = "/auth/login";
         String REGISTER = "/auth/register";
@@ -26,28 +21,28 @@ public class ApiConstans {
     };
 
     public enum StatusAndCode {
-        OK(200, "Success"),
+        OK(200, "OK"),
         CREATED(201, "Created"),
         UNAUTHENTICATED(401, "Unauthenticated"),
-        NOT_FOUND(404, "Not found"),
+        NOT_FOUND(404, "Not Found"),
         METHOD_NOT_ALLOWED(405, "Method Not Allowed"),
-        UNPROCESSABLE(422, "Unprocessable Content"),
+        UNPROCESSABLE(422, "Unprocessable Entity"),
         INTERNAL_SERVER_ERROR(500, "Internal server error");
 
         private final int code;
-        private final String status;
+        private final String statusMessage;
 
-        StatusAndCode(int code, String status) {
+        StatusAndCode(int code, String statusMessage) {
             this.code = code;
-            this.status = status;
+            this.statusMessage = statusMessage;
         }
 
         public int getCode() {
             return this.code;
         }
 
-        public String getStatus() {
-            return this.status;
+        public String getStatusMessage() {
+            return this.statusMessage;
         }
     };
 
