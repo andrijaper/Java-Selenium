@@ -33,6 +33,10 @@ public class BaseApi {
         Assert.assertEquals(statusCode, code);
     }
 
+    public String getUsersId(Response response) {
+        return response.jsonPath().getString("user.id");
+    }
+
     public Response sendApiRequest(String method, String urlEndpoint, String token, JSONObject body) {
         RequestSpecification request = RestAssured.given();
 
