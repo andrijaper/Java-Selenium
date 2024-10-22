@@ -39,7 +39,7 @@ public enum User {
         return new String[][] { { getKeys()[1], user.getEmail() }, { getKeys()[2], user.getPassword() } };
     }
 
-    public static String[][] generateUsersDataForRegistration(User user) {
+    public static String[][] generateUsersData(User user) {
         return new String[][] { { getKeys()[0], user.getUsername() }, { getKeys()[1], user.getEmail() },
                 { getKeys()[2], user.getPassword() } };
     }

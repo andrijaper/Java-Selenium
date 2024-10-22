@@ -18,13 +18,13 @@ public class Registration {
 
         RegistrationApi registration;
         Map<String, String> userData;
-        String[][] userJson;
+        String[][] user;
         JSONObject bodyJson;
         JsonGenerator json;
         String[] keys = User.getKeys();
 
         @BeforeMethod
-        public void createRandomUser() {
+        public void initialize() {
                 registration = new RegistrationApi();
                 userData = new HashMap<>();
                 json = new JsonGenerator();
@@ -33,8 +33,8 @@ public class Registration {
 
         @Test
         public void existingUserShouldntRegisterAgain() {
-                userJson = User.generateUsersDataForRegistration(User.REGISTRATION_USER);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateUsersData(User.REGISTRATION_USER);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -46,8 +46,8 @@ public class Registration {
 
         @Test
         public void methodNotAllowed() {
-                userJson = User.generateRandomUserForRegistration();
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserForRegistration();
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.PATCH.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -59,8 +59,8 @@ public class Registration {
 
         @Test
         public void invalidUrl() {
-                userJson = User.generateRandomUserForRegistration();
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserForRegistration();
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER + ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -76,8 +76,8 @@ public class Registration {
                 userData.put(keys[1], "");
                 userData.put(keys[2], "");
 
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -91,8 +91,8 @@ public class Registration {
         public void shouldntBeAbleToRegisterWithOneEmptyField() {
                 for (String key : keys) {
                         userData.put(key, "");
-                        userJson = User.generateRandomUserWithInvalidValues(userData);
-                        bodyJson = JsonGenerator.generateJson(userJson);
+                        user = User.generateRandomUserWithInvalidValues(userData);
+                        bodyJson = JsonGenerator.generateJson(user);
                         Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                         ApiConstans.urlEndpoint.REGISTER,
                                         null,
@@ -107,8 +107,8 @@ public class Registration {
         public void shouldntBeAbleToRegisterWithBlankSpaceInOneField() {
                 for (String key : keys) {
                         userData.put(key, " ");
-                        userJson = User.generateRandomUserWithInvalidValues(userData);
-                        bodyJson = JsonGenerator.generateJson(userJson);
+                        user = User.generateRandomUserWithInvalidValues(userData);
+                        bodyJson = JsonGenerator.generateJson(user);
                         Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                         ApiConstans.urlEndpoint.REGISTER,
                                         null,
@@ -125,8 +125,8 @@ public class Registration {
                 JSONObject object = JsonGenerator.generateJson(objectToConvert);
                 for (String key : keys) {
                         userData.put(key, object.toString());
-                        userJson = User.generateRandomUserWithInvalidValues(userData);
-                        bodyJson = JsonGenerator.generateJson(userJson);
+                        user = User.generateRandomUserWithInvalidValues(userData);
+                        bodyJson = JsonGenerator.generateJson(user);
                         JSONObject jsonUser = new JSONObject(bodyJson);
                         Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                         ApiConstans.urlEndpoint.REGISTER,
@@ -143,8 +143,8 @@ public class Registration {
         public void shouldntBeAbleToRegisterWithArraytInOneField() {
                 for (String key : keys) {
                         userData.put(key, keys.toString());
-                        userJson = User.generateRandomUserWithInvalidValues(userData);
-                        bodyJson = JsonGenerator.generateJson(userJson);
+                        user = User.generateRandomUserWithInvalidValues(userData);
+                        bodyJson = JsonGenerator.generateJson(user);
                         JSONObject jsonUser = new JSONObject(bodyJson);
                         Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                         ApiConstans.urlEndpoint.REGISTER,
@@ -160,8 +160,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWithInvalidEmailMissingAtSign() {
                 userData.put(keys[1], General.generateRandomString(8) + ".com");
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -174,8 +174,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWithInvalidEmailMissingDomain() {
                 userData.put(keys[1], General.generateRandomString(8) + "@test");
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -188,8 +188,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWithInvalidEmailOnlyAtSign() {
                 userData.put(keys[1], "@");
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -202,8 +202,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWithInvalidEmailOnlyAtSignAndDomain() {
                 userData.put(keys[1], "@.com");
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -216,8 +216,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWithInvalidEmailMissingMailServer() {
                 userData.put(keys[1], General.generateRandomString(5) + "@.com");
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -230,8 +230,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWithExistingEmail() {
                 userData.put(keys[1], User.TEST_USER.getEmail());
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -244,8 +244,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWithExistingUsername() {
                 userData.put(keys[0], User.TEST_USER.getUsername());
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -258,8 +258,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWith256CharactersAsUsername() {
                 userData.put(keys[0], General.generateRandomString(256));
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -272,8 +272,8 @@ public class Registration {
         @Test
         public void shouldntRegisterWithFiveCharacterPassword() {
                 userData.put(keys[2], General.generateRandomString(5));
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -286,8 +286,8 @@ public class Registration {
         @Test
         public void ableToRegisterWithSixCharacterPassword() {
                 userData.put(keys[2], General.generateRandomString(6));
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -302,8 +302,8 @@ public class Registration {
         @Test
         public void ableToRegisterWith255CharactersAsUsername() {
                 userData.put(keys[0], General.generateRandomString(255));
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -318,8 +318,8 @@ public class Registration {
         @Test
         public void ableToRegisterWithAllLowerCasePassword() {
                 userData.put(keys[2], General.generateRandomString(8).toLowerCase());
-                userJson = User.generateRandomUserWithInvalidValues(userData);
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserWithInvalidValues(userData);
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
@@ -333,8 +333,8 @@ public class Registration {
 
         @Test
         public void successfullRegistration() {
-                userJson = User.generateRandomUserForRegistration();
-                bodyJson = JsonGenerator.generateJson(userJson);
+                user = User.generateRandomUserForRegistration();
+                bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
                                 ApiConstans.urlEndpoint.REGISTER,
                                 null,
