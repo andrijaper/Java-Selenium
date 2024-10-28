@@ -18,9 +18,21 @@ public class General {
         return result.toString();
     }
 
-    public static int generateRandomNumber(int min, int max) {
+    public static int generateRandomInt(int length) {
+        String numbers = "123456789";
+        StringBuilder result = new StringBuilder();
         Random random = new Random();
-        return random.nextInt((max - min) + 1) + min;
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(numbers.length());
+            result.append(numbers.charAt(index));
+        }
+        return Integer.parseInt(result.toString());
+    }
+
+    public static long generateRandomNumber(long min, long max) {
+        Random random = new Random();
+        return min + (long) (random.nextDouble() * (max - min + 1));
     }
 
     public static LocalDate generateRandomDateBetween(LocalDate start, LocalDate end) {

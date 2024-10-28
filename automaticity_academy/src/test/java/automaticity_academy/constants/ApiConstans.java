@@ -7,6 +7,7 @@ public class ApiConstans {
         String LOGOUT = "auth/logout";
         String CUSTOMERS = "/customers";
         String BILLING_INFO = "/billing-info";
+        String SHIPPING_INFO = "/shipping-info";
     }
 
     public enum HttpMethods {

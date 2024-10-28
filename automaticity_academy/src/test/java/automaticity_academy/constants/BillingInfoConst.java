@@ -1,16 +1,17 @@
 package automaticity_academy.constants;
 
-public enum BillingInfo {
+public enum BillingInfoConst {
 
-    BILLING_INFO("Jane Doe", "Visa", "1234567898765432", 123, "12/25");
+    BILLING_INFO("Jane Doe", "Visa", "1234567898765432", "123", "12/25");
 
     private final String cardholder;
     private final String cardType;
     private final String cardNumber;
-    private final int cvv;
+    private final String cvv;
     private final String cardExpirationDate;
 
-    private BillingInfo(String cardholder, String cardType, String cardNumber, int cvv, String cardExpirationDate) {
+    private BillingInfoConst(String cardholder, String cardType, String cardNumber, String cvv,
+            String cardExpirationDate) {
         this.cardholder = cardholder;
         this.cardType = cardType;
         this.cardNumber = cardNumber;
@@ -30,7 +31,7 @@ public enum BillingInfo {
         return cardNumber;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
