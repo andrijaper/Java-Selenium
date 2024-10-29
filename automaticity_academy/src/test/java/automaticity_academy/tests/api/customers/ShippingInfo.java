@@ -39,7 +39,6 @@ public class ShippingInfo {
     @Test
     public void shouldListCustomersBillingInfo() {
         Response response = shippingInfo.getShippingInfo(id, token);
-        System.out.println(response.asPrettyString());
         shippingInfo.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
         shippingInfo.checkStatusMessage(response,
                 ApiConstans.StatusAndCode.OK.getStatusMessage());

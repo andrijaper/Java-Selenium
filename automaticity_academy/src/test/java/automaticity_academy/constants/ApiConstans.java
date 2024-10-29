@@ -8,6 +8,9 @@ public class ApiConstans {
         String CUSTOMERS = "/customers";
         String BILLING_INFO = "/billing-info";
         String SHIPPING_INFO = "/shipping-info";
+        String PRODUCTS = "/products";
+        String PRODUCT_IMAGE = "/product-images";
+        String CART = "/cart";
     }
 
     public enum HttpMethods {

@@ -30,9 +30,14 @@ public class General {
         return Integer.parseInt(result.toString());
     }
 
-    public static long generateRandomNumber(long min, long max) {
+    public static long generateRandomIntNumber(long min, long max) {
         Random random = new Random();
         return min + (long) (random.nextDouble() * (max - min + 1));
+    }
+
+    public static double generateRandomDouble(double min, double max) {
+        Random random = new Random();
+        return min + (random.nextDouble() * (max - min));
     }
 
     public static LocalDate generateRandomDateBetween(LocalDate start, LocalDate end) {
