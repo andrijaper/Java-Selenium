@@ -43,9 +43,9 @@ public class BillingInfoApi extends BaseApi {
                 json.put(BillingInfoConst.getBillingInfoKeys()[0], General.generateRandomString(10));
                 json.put(BillingInfoConst.getBillingInfoKeys()[1], General.generateRandomString(5));
                 json.put(BillingInfoConst.getBillingInfoKeys()[2],
-                                String.valueOf(General.generateRandomNumber(1000000000000000L, 9999999999999999L)));
+                                String.valueOf(General.generateRandomIntNumber(1000000000000000L, 9999999999999999L)));
                 json.put(BillingInfoConst.getBillingInfoKeys()[3],
-                                String.valueOf(General.generateRandomNumber(100, 999)));
+                                String.valueOf(General.generateRandomIntNumber(100, 999)));
                 json.put(BillingInfoConst.getBillingInfoKeys()[4],
                                 BillingInfoConst.BILLING_INFO.getCardExpirationDate());
                 return json;
