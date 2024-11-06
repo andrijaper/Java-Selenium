@@ -23,6 +23,7 @@ public class Login {
         LoginApi login;
         Map<String, String> userData;
         String[] keys = User.getKeys();
+        String token;
 
         @BeforeMethod
         public void initialize() {
@@ -74,7 +75,7 @@ public class Login {
                 bodyJson = JsonGenerator.generateJson(user);
                 bodyJson.remove("username");
                 Response response = login.login(bodyJson, null,
-                                ApiConstans.urlEndpoint.LOGIN + ApiConstans.urlEndpoint.LOGIN);
+                                ApiConstans.Endpoint.LOGIN + ApiConstans.Endpoint.LOGIN);
                 login.checkStatusCode(response, ApiConstans.StatusAndCode.NOT_FOUND.getCode());
                 login.checkStatusMessage(response,
                                 ApiConstans.StatusAndCode.NOT_FOUND.getStatusMessage());
@@ -233,6 +234,7 @@ public class Login {
                 user = User.generateUsersDataForLogin(User.TEST_USER);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = login.login(bodyJson, null, null);
+                token = login.getToken(response);
                 login.checkIfUserIdLoggedIn(response, bodyJson);
                 login.checkStatusCode(response,
                                 ApiConstans.StatusAndCode.OK.getCode());
@@ -243,6 +245,6 @@ public class Login {
         @AfterClass
         public void logout() {
                 LogoutApi logout = new LogoutApi();
-                logout.logout();
+                logout.logout(token);
         }
 }

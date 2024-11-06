@@ -12,26 +12,26 @@ public class ProductsApi extends BaseApi {
     }
 
     public Response showAllProducts(String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.urlEndpoint.PRODUCTS, token, null);
+        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.Endpoint.PRODUCTS, token, null);
     }
 
     public Response showOneProduct(String id, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.urlEndpoint.PRODUCTS + "/" + id,
+        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.Endpoint.PRODUCTS + "/" + id,
                 token, null);
     }
 
     public Response updateProduct(JSONObject body, String id, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.PUT.getMethod(), ApiConstans.urlEndpoint.PRODUCTS + "/" + id,
+        return sendApiRequest(ApiConstans.HttpMethods.PUT.getMethod(), ApiConstans.Endpoint.PRODUCTS + "/" + id,
                 token, body);
     }
 
     public Response addNewProduct(JSONObject newProductBody, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(), ApiConstans.urlEndpoint.PRODUCTS, token,
+        return sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(), ApiConstans.Endpoint.PRODUCTS, token,
                 newProductBody);
     }
 
     public Response removeProduct(String id, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.DELETE.getMethod(), ApiConstans.urlEndpoint.PRODUCTS + "/" + id,
+        return sendApiRequest(ApiConstans.HttpMethods.DELETE.getMethod(), ApiConstans.Endpoint.PRODUCTS + "/" + id,
                 token,
                 null);
     }

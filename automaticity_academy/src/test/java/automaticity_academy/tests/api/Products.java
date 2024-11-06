@@ -110,6 +110,6 @@ public class Products {
     @AfterClass
     public void logout() {
         LogoutApi logout = new LogoutApi();
-        logout.logout();
+        logout.logout(token);
     }
 }

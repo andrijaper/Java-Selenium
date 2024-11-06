@@ -1,5 +1,12 @@
 package automaticity_academy.utils;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
 import java.util.Random;
 import java.time.LocalDate;
 import java.util.concurrent.ThreadLocalRandom;
@@ -45,5 +52,14 @@ public class General {
         long endEpochDay = end.toEpochDay();
         long randomEpochDay = ThreadLocalRandom.current().nextLong(startEpochDay, endEpochDay);
         return LocalDate.ofEpochDay(randomEpochDay);
+    }
+
+    public static void checkUrl(WebDriver driver,String url){
+        Assert.assertTrue(new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.urlToBe(url)));
+        Assert.assertEquals(driver.getCurrentUrl(),url);
+    }
+
+    public static void checkMessage(WebElement messageInElement, String messageExpected){
+        Assert.assertEquals(messageInElement.getText().trim(),messageExpected);
     }
 }

@@ -36,7 +36,7 @@ public class Registration {
                 user = User.generateUsersData(User.REGISTRATION_USER);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -49,7 +49,7 @@ public class Registration {
                 user = User.generateRandomUserForRegistration();
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.PATCH.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.METHOD_NOT_ALLOWED.getCode());
@@ -62,7 +62,7 @@ public class Registration {
                 user = User.generateRandomUserForRegistration();
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER + ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER + "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.NOT_FOUND.getCode());
@@ -79,7 +79,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -94,7 +94,7 @@ public class Registration {
                         user = User.generateRandomUserWithInvalidValues(userData);
                         bodyJson = JsonGenerator.generateJson(user);
                         Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                        ApiConstans.urlEndpoint.REGISTER,
+                                        "/auth"+ApiConstans.Endpoint.REGISTER,
                                         null,
                                         bodyJson);
                         registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -110,7 +110,7 @@ public class Registration {
                         user = User.generateRandomUserWithInvalidValues(userData);
                         bodyJson = JsonGenerator.generateJson(user);
                         Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                        ApiConstans.urlEndpoint.REGISTER,
+                                        "/auth"+ApiConstans.Endpoint.REGISTER,
                                         null,
                                         bodyJson);
                         registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -129,7 +129,7 @@ public class Registration {
                         bodyJson = JsonGenerator.generateJson(user);
                         JSONObject jsonUser = new JSONObject(bodyJson);
                         Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                        ApiConstans.urlEndpoint.REGISTER,
+                                        "/auth"+ApiConstans.Endpoint.REGISTER,
                                         null,
                                         jsonUser);
                         registration.checkStatusCode(response,
@@ -147,7 +147,7 @@ public class Registration {
                         bodyJson = JsonGenerator.generateJson(user);
                         JSONObject jsonUser = new JSONObject(bodyJson);
                         Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                        ApiConstans.urlEndpoint.REGISTER,
+                                        "/auth"+ApiConstans.Endpoint.REGISTER,
                                         null,
                                         jsonUser);
                         registration.checkStatusCode(response,
@@ -163,7 +163,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -177,7 +177,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -191,7 +191,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -205,7 +205,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -219,7 +219,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -233,7 +233,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -247,7 +247,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -261,7 +261,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -275,7 +275,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
@@ -289,7 +289,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkIfUserRegistrated(response, bodyJson);
@@ -305,7 +305,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkIfUserRegistrated(response, bodyJson);
@@ -321,7 +321,7 @@ public class Registration {
                 user = User.generateRandomUserWithInvalidValues(userData);
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkIfUserRegistrated(response, bodyJson);
@@ -336,7 +336,7 @@ public class Registration {
                 user = User.generateRandomUserForRegistration();
                 bodyJson = JsonGenerator.generateJson(user);
                 Response response = registration.sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                                ApiConstans.urlEndpoint.REGISTER,
+                                "/auth"+ApiConstans.Endpoint.REGISTER,
                                 null,
                                 bodyJson);
                 registration.checkIfUserRegistrated(response, bodyJson);

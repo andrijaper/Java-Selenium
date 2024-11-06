@@ -13,7 +13,7 @@ public class RegistrationApi extends BaseApi {
 
     public Response registerUser(JSONObject body) {
         return sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(),
-                ApiConstans.urlEndpoint.REGISTER,
+                "/auth"+ApiConstans.Endpoint.REGISTER,
                 null,
                 body);
     }
@@ -21,7 +21,7 @@ public class RegistrationApi extends BaseApi {
     public void checkIfUserRegistrated(Response response, JSONObject user) {
         Assert.assertTrue(Integer.parseInt(response.jsonPath().getString("user.id")) > 0);
         Assert.assertEquals(user.getString("email"), response.jsonPath().getString("user.email"));
-        Assert.assertTrue(response.jsonPath().getString("user.password").length() > 0);
-        Assert.assertTrue(getToken(response).length() > 0);
+        Assert.assertFalse(response.jsonPath().getString("user.password").isEmpty());
+        Assert.assertFalse(getToken(response).isEmpty());
     }
 }

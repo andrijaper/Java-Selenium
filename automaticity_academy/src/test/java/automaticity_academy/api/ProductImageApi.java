@@ -12,24 +12,24 @@ public class ProductImageApi extends BaseApi {
     }
 
     public Response getAllProductImages(String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.urlEndpoint.PRODUCT_IMAGE, token,
+        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.Endpoint.PRODUCT_IMAGE, token,
                 null);
     }
 
     public Response addNewProductImage(JSONObject body, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(), ApiConstans.urlEndpoint.PRODUCT_IMAGE, token,
+        return sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(), ApiConstans.Endpoint.PRODUCT_IMAGE, token,
                 body);
     }
 
     public Response showOneProductImage(String id, String token) {
         return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(),
-                ApiConstans.urlEndpoint.PRODUCT_IMAGE + "/" + id, token,
+                ApiConstans.Endpoint.PRODUCT_IMAGE + "/" + id, token,
                 null);
     }
 
     public Response removeProductImage(String id, String token) {
         return sendApiRequest(ApiConstans.HttpMethods.DELETE.getMethod(),
-                ApiConstans.urlEndpoint.PRODUCT_IMAGE + "/" + id, token,
+                ApiConstans.Endpoint.PRODUCT_IMAGE + "/" + id, token,
                 null);
     }
 

@@ -16,14 +16,14 @@ public class BillingInfoApi extends BaseApi {
 
         public Response getBillingInfo(String id, String token) {
                 return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(),
-                                ApiConstans.urlEndpoint.CUSTOMERS + "/" + id + ApiConstans.urlEndpoint.BILLING_INFO,
+                                ApiConstans.Endpoint.CUSTOMERS + "/" + id + ApiConstans.Endpoint.BILLING_INFO,
                                 token,
                                 null);
         }
 
         public Response updateBillingInfo(JSONObject body, String id, String token) {
                 return sendApiRequest(ApiConstans.HttpMethods.PUT.getMethod(),
-                                ApiConstans.urlEndpoint.CUSTOMERS + "/" + id + ApiConstans.urlEndpoint.BILLING_INFO,
+                                ApiConstans.Endpoint.CUSTOMERS + "/" + id + ApiConstans.Endpoint.BILLING_INFO,
                                 token,
                                 body);
         }
