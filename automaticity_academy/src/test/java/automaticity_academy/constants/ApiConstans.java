@@ -1,16 +1,17 @@
 package automaticity_academy.constants;
 
 public class ApiConstans {
-    public interface urlEndpoint {
-        String LOGIN = "/auth/login";
-        String REGISTER = "/auth/register";
-        String LOGOUT = "auth/logout";
-        String CUSTOMERS = "/customers";
-        String BILLING_INFO = "/billing-info";
-        String SHIPPING_INFO = "/shipping-info";
-        String PRODUCTS = "/products";
-        String PRODUCT_IMAGE = "/product-images";
-        String CART = "/cart";
+    public static class Endpoint {
+        public static final String LOGIN = "/login";
+        public static final String REGISTER = "/register";
+        public static final String LOGOUT = "/logout";
+        public static final String CUSTOMERS = "/customers";
+        public static final String BILLING_INFO = "/billing-info";
+        public static final String SHIPPING_INFO = "/shipping-info";
+        public static final String PRODUCTS = "/products";
+        public static final String PRODUCT_IMAGE = "/product-images";
+        public static final String CART = "/cart";
+        public static final String DASHBOARD = "/dashboard";
     }
 
     public enum HttpMethods {

@@ -14,28 +14,28 @@ public class CustomerApi extends BaseApi {
 
     public Response getAllCustomers(String token) {
         return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(),
-                ApiConstans.urlEndpoint.CUSTOMERS,
+                ApiConstans.Endpoint.CUSTOMERS,
                 token,
                 null);
     }
 
     public Response getCustomerById(String id, String token) {
         return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(),
-                ApiConstans.urlEndpoint.CUSTOMERS + "/" + id,
+                ApiConstans.Endpoint.CUSTOMERS + "/" + id,
                 token,
                 null);
     }
 
     public Response deleteCustomer(String id, String token) {
         return sendApiRequest(ApiConstans.HttpMethods.DELETE.getMethod(),
-                ApiConstans.urlEndpoint.CUSTOMERS + "/" + id,
+                ApiConstans.Endpoint.CUSTOMERS + "/" + id,
                 token,
                 null);
     }
 
     public Response updateUsersData(JSONObject body, String id, String token) {
         return sendApiRequest(ApiConstans.HttpMethods.PUT.getMethod(),
-                ApiConstans.urlEndpoint.CUSTOMERS + "/" + id,
+                ApiConstans.Endpoint.CUSTOMERS + "/" + id,
                 token,
                 body);
     }

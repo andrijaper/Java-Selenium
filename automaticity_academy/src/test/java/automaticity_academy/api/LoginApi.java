@@ -12,13 +12,13 @@ public class LoginApi extends BaseApi {
 
     }
 
-    public Response login(JSONObject body, String apiMethod, String urlEndpoint) {
+    public Response login(JSONObject body, String apiMethod, String Endpoint) {
         String method = ApiConstans.HttpMethods.POST.getMethod();
-        String endpoint = ApiConstans.urlEndpoint.LOGIN;
+        String endpoint = "/auth"+ApiConstans.Endpoint.LOGIN;
         if (apiMethod != null) {
             method = apiMethod;
-        } else if (urlEndpoint != null) {
-            endpoint = urlEndpoint;
+        } else if (Endpoint != null) {
+            endpoint = Endpoint;
         }
         return sendApiRequest(method,
                 endpoint,
@@ -34,8 +34,8 @@ public class LoginApi extends BaseApi {
 
         Assert.assertTrue(id > 0);
         Assert.assertEquals(user.getString("email"), email);
-        Assert.assertTrue(password.length() > 0);
-        Assert.assertTrue(token.length() > 0);
+        Assert.assertFalse(password.isEmpty());
+        Assert.assertFalse(token.isEmpty());
     }
 
 }

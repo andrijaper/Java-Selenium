@@ -16,14 +16,14 @@ public class ShippingInfoApi extends BaseApi {
 
     public Response getShippingInfo(String id, String token) {
         return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(),
-                ApiConstans.urlEndpoint.CUSTOMERS + "/" + id + ApiConstans.urlEndpoint.SHIPPING_INFO,
+                ApiConstans.Endpoint.CUSTOMERS + "/" + id + ApiConstans.Endpoint.SHIPPING_INFO,
                 token,
                 null);
     }
 
     public Response updateShippingInfo(JSONObject body, String id, String token) {
         return sendApiRequest(ApiConstans.HttpMethods.PUT.getMethod(),
-                ApiConstans.urlEndpoint.CUSTOMERS + "/" + id + ApiConstans.urlEndpoint.SHIPPING_INFO,
+                ApiConstans.Endpoint.CUSTOMERS + "/" + id + ApiConstans.Endpoint.SHIPPING_INFO,
                 token,
                 body);
     }

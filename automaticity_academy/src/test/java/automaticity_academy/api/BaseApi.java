@@ -37,7 +37,7 @@ public class BaseApi {
         return response.jsonPath().getString("user.id");
     }
 
-    public Response sendApiRequest(String method, String urlEndpoint, String token, JSONObject body) {
+    public Response sendApiRequest(String method, String endpoint, String token, JSONObject body) {
         RestAssured.baseURI = Urls.PRODUCTION_URL + "/api/v1";
         RequestSpecification request = RestAssured.given();
 
@@ -50,19 +50,13 @@ public class BaseApi {
             request.body(body.toString());
         }
 
-        switch (method) {
-            case "GET":
-                return request.get(urlEndpoint);
-            case "POST":
-                return request.post(urlEndpoint);
-            case "PUT":
-                return request.put(urlEndpoint);
-            case "DELETE":
-                return request.delete(urlEndpoint);
-            case "PATCH":
-                return request.patch(urlEndpoint);
-            default:
-                throw new IllegalArgumentException();
-        }
+        return switch (method) {
+            case "GET" -> request.get(endpoint);
+            case "POST" -> request.post(endpoint);
+            case "PUT" -> request.put(endpoint);
+            case "DELETE" -> request.delete(endpoint);
+            case "PATCH" -> request.patch(endpoint);
+            default -> throw new IllegalArgumentException();
+        };
     }
 }

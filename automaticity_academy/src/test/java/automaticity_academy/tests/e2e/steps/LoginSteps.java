@@ -1,5 +1,6 @@
 package automaticity_academy.tests.e2e.steps;
 
+import io.cucumber.java.After;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,37 +22,42 @@ public class LoginSteps {
       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
       driver.manage().window().maximize();
     }
-    
+
     @Given("User navigate to the Academy Application")
-    public void User_navigate_to_the_Academy_Application(){ 
+    public void userNavigateToTheAcademyApplication() {
         driver.get("https://automaticityacademy.ngrok.app");
         System.out.println(driver.getTitle());
     }
 
-    @And("User clicks on the login button")
-    public void User_clicks_on_the_login_button(){ 
+    @When("User clicks on the login button")
+    public void userClicksOnTheLoginButton() {
       driver.findElement(By.id("loginBtn")).click();
     }
 
-    @And("User enter the email")
-    public void userEnterTheEmailAsJaneAtTestCom(){ 
-      driver.findElement(By.id("email")).sendKeys("jane@test.com");
+    @And("User enter the email {string} in the field")
+    public void userEnterTheEmail(String email){
+      driver.findElement(By.id("email")).sendKeys(email);
     }
 
-    @And("User enter the password")
-    public void userEnterThePasswordAsJanedoeAt123(){ 
-      driver.findElement(By.id("password")).sendKeys("Janedoe@123");
+    @And("User enter the password {string} in the field")
+    public void userEnterThePassword(String password){
+      driver.findElement(By.id("password")).sendKeys(password);
     }
 
-    @When("User click on the login button")
-    public void whenUserClickOnTheLoginButton(){ 
+    @And("User click on the login button")
+    public void whenUserClickOnTheLoginButton(){
       driver.findElement(By.xpath("//button/*[text()='Sign In']")).click();
     }
 
     @Then("Login should be success")
     public void loginShouldBeSuccess(){
-      String url = driver.getCurrentUrl(); 
+      String url = driver.getCurrentUrl();
       System.out.println(url);
       driver.quit();
+    }
+
+    @After("Quit")
+    public void quitBrowser(){
+        driver.quit();
     }
 }

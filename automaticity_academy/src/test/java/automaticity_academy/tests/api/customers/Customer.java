@@ -81,7 +81,7 @@ public class Customer {
                 JSONObject bodyNewData = JsonGenerator.generateJson(newUserData);
                 bodyNewData.remove(keys[2]);
                 Response updatedUserResponse = customer.sendApiRequest(ApiConstans.HttpMethods.PATCH.getMethod(),
-                                ApiConstans.urlEndpoint.CUSTOMERS + "/" + id, token, bodyNewData);
+                                ApiConstans.Endpoint.CUSTOMERS + "/" + id, token, bodyNewData);
                 customer.checkStatusCode(updatedUserResponse, ApiConstans.StatusAndCode.METHOD_NOT_ALLOWED.getCode());
                 customer.checkStatusMessage(updatedUserResponse,
                                 ApiConstans.StatusAndCode.METHOD_NOT_ALLOWED.getStatusMessage());
@@ -231,6 +231,6 @@ public class Customer {
         @AfterClass
         public void logout() {
                 LogoutApi logout = new LogoutApi();
-                logout.logout();
+                logout.logout(token);
         }
 }

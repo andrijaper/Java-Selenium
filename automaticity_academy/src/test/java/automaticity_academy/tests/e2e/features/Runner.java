@@ -9,7 +9,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
     dryRun = false,
     snippets = SnippetType.CAMELCASE,
     monochrome = true,
-    plugin = {"html:target/cucumber.html"},
+    plugin = {"html:target/cucumber.html", "summary"},
     glue = {"e2e.steps"}
 )
 
