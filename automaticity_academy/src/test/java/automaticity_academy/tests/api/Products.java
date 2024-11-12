@@ -63,7 +63,7 @@ public class Products {
         products.checkStatusCode(responseUpdatedProduct, ApiConstans.StatusAndCode.OK.getCode());
         products.checkStatusMessage(responseUpdatedProduct, ApiConstans.StatusAndCode.OK.getStatusMessage());
         Assert.assertNotEquals(bodyNewProduct.getString("name"),
-                responseUpdatedProduct.jsonPath().getString("product.name"));
+            responseUpdatedProduct.jsonPath().getString("product.name"));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class Products {
         Response numberOfProductsAfter = products.showAllProducts(token);
 
         Assert.assertEquals(numberOfProductsBefore.jsonPath().getList("products").size() + 1,
-                numberOfProductsAfter.jsonPath().getList("products").size());
+            numberOfProductsAfter.jsonPath().getList("products").size());
     }
 
     @Test
@@ -104,12 +104,6 @@ public class Products {
         response = products.showAllProducts(token);
         products.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
         products.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
-        Assert.assertTrue(response.jsonPath().getList("products").size() > 0);
-    }
-
-    @AfterClass
-    public void logout() {
-        LogoutApi logout = new LogoutApi();
-        logout.logout(token);
+        Assert.assertFalse(response.jsonPath().getList("products").isEmpty());
     }
 }

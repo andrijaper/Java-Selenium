@@ -50,13 +50,19 @@ public class BaseApi {
             request.body(body.toString());
         }
 
-        return switch (method) {
-            case "GET" -> request.get(endpoint);
-            case "POST" -> request.post(endpoint);
-            case "PUT" -> request.put(endpoint);
-            case "DELETE" -> request.delete(endpoint);
-            case "PATCH" -> request.patch(endpoint);
-            default -> throw new IllegalArgumentException();
-        };
+        switch (method) {
+            case "GET":
+                return request.get(endpoint);
+            case "POST":
+                return request.post(endpoint);
+            case "PUT":
+                return request.put(endpoint);
+            case "DELETE":
+                return request.delete(endpoint);
+            case "PATCH":
+                return request.patch(endpoint);
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 }
