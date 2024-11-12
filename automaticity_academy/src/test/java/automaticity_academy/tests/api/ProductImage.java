@@ -56,7 +56,7 @@ public class ProductImage {
         response = pImage.getAllProductImages(token);
         pImage.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
         pImage.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
-        Assert.assertTrue(response.jsonPath().getList("images").size() > 0);
+        Assert.assertFalse(response.jsonPath().getList("images").isEmpty());
     }
 
     @Test(enabled = false)
