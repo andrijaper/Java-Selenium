@@ -1,5 +1,7 @@
 package automaticity_academy.pom;
 
+import automaticity_academy.pom.base.Driver;
+import automaticity_academy.pom.base.Waits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,8 +15,8 @@ public class NavbarPage {
     private final By registerButtonLocator = By.xpath("//a[text()='Register']");
     private final By loginButtonLocator = By.id("loginBtn");
 
-    public NavbarPage(WebDriver driver) {
-        this.driver = driver;
+    public NavbarPage() {
+        this.driver = Driver.getDriver();
     }
 
     public WebElement getDashboardButton() {
@@ -29,15 +31,15 @@ public class NavbarPage {
         return driver.findElement(loginButtonLocator);
     }
 
-    public void clickLoginButton(){
-        Waits.waitForElementClickability(driver,loginButtonLocator, Duration.ofSeconds(10)).click();
+    public void clickLoginButton() {
+        Waits.waitForElementClickability(driver, loginButtonLocator, Duration.ofSeconds(10)).click();
     }
 
-    public void clickRegisterButton(){
-        Waits.waitForElementClickability(driver,registerButtonLocator, Duration.ofSeconds(10)).click();
+    public void clickRegisterButton() {
+        Waits.waitForElementClickability(driver, registerButtonLocator, Duration.ofSeconds(10)).click();
     }
 
-    public void clickDashboardButton(){
-        Waits.waitForElementClickability(driver,dashboardButtonLocator, Duration.ofSeconds(10)).click();
+    public void clickDashboardButton() {
+        Waits.waitForElementClickability(driver, dashboardButtonLocator, Duration.ofSeconds(10)).click();
     }
 }

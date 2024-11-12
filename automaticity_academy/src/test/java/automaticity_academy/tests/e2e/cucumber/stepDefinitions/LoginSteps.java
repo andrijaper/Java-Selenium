@@ -1,7 +1,10 @@
-package automaticity_academy.tests.e2e.stepDefinitions;
+package automaticity_academy.tests.e2e.cucumber.stepDefinitions;
 
 import automaticity_academy.constants.ApiConstans;
 import automaticity_academy.constants.Urls;
+import automaticity_academy.pom.LoginPage;
+import automaticity_academy.pom.NavbarPage;
+import automaticity_academy.pom.base.Driver;
 import automaticity_academy.pom.base.Waits;
 import automaticity_academy.utils.General;
 import io.cucumber.java.After;
@@ -17,52 +20,52 @@ import org.testng.Assert;
 
 public class LoginSteps {
 
-    WebDriver driver;
+    WebDriver driver = Driver.getDriver();
+    NavbarPage navbar = new NavbarPage();
+    LoginPage login = new LoginPage();
 
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-    }
-
-    @Given("User navigate to the Academy Application")
+    @Given("I am on the Academy Application Login window")
     public void userNavigateToTheAcademyApplication() {
-        driver.get("https://automaticityacademy.ngrok.app");
+        driver.get(Urls.PRODUCTION_URL + ApiConstans.Endpoint.LOGIN);
     }
 
-    @When("User clicks on the login button")
+    @When("I click on the login button")
     public void userClicksOnTheLoginButton() {
-
+        navbar.getLoginButton();
     }
 
-    @And("User enter the email {string} in the field")
+    @When("I enter the email {string} in the field")
     public void userEnterTheEmail(String email) {
-        driver.findElement(By.id("email")).sendKeys(email);
+        login.enterEmail(email);
     }
 
-    @And("User enter the password {string} in the field")
+    @When("I enter the password {string} in the field")
     public void userEnterThePassword(String password) {
-        driver.findElement(By.id("password")).sendKeys(password);
+        login.enterPassword(password);
     }
 
-    @And("User click on the login button")
+    @When("I click on the sign in button")
     public void whenUserClickOnTheLoginButton() {
-        driver.findElement(By.xpath("//button/*[text()='Sign In']")).click();
+        login.clickSignIn();
     }
 
-    @Then("{string} message is displayed")
-    public void is_displayed(String message) {
-        Assert.assertEquals(Waits.waitForElementVisibility(driver, By.cssSelector("p"), Duration.ofSeconds(10)).getText().trim(), message);
+    @Then("I should see invalid email {string}")
+    public void checkDisplayedEmailMessage(String message) {
+        Assert.assertEquals(login.getInvalidEmailMessage(), message);
     }
 
-    @Then("Login should be success")
+    @Then("I should see invalid password {string}")
+    public void checkDisplayedPasswordMessage(String message) {
+        Assert.assertEquals(login.getInvalidPasswordlMessage(), message);
+    }
+
+    @Then("I should see invalid fields {string}")
+    public void checkDisplayedFieldsMessage(String message) {
+        Assert.assertEquals(login.getInvalidFieldsMessage(), message);
+    }
+
+    @Then("I should be on Dashboard page")
     public void loginShouldBeSuccess() {
         General.checkUrl(driver, Urls.PRODUCTION_URL + ApiConstans.Endpoint.DASHBOARD);
-    }
-
-    @After()
-    public void quitBrowser() {
-        driver.quit();
     }
 }

@@ -6,6 +6,7 @@ import automaticity_academy.constants.Urls;
 import automaticity_academy.constants.User;
 import automaticity_academy.pom.DashboardPage;
 import automaticity_academy.pom.LoginPage;
+import automaticity_academy.pom.base.Driver;
 import automaticity_academy.utils.General;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,31 +23,31 @@ public class Login {
     DashboardPage dashboard;
 
     @BeforeClass
-    public void initialize(){
-        driver = new ChromeDriver();
-        dashboard = new DashboardPage(driver);
-        login = new LoginPage(driver);
+    public void initialize() {
+        driver = Driver.getDriver();
+        dashboard = new DashboardPage();
+        login = new LoginPage();
     }
 
     @BeforeMethod
-    public void openLoginPage(){
+    public void openLoginPage() {
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.get(Urls.PRODUCTION_URL+ ApiConstans.Endpoint.LOGIN);
+        driver.get(Urls.PRODUCTION_URL + ApiConstans.Endpoint.LOGIN);
     }
 
     @Test
-    public void successfullLogin(){
+    public void successfullLogin() {
         login.enterEmail(User.TEST_USER.getEmail());
         login.enterPassword(User.TEST_USER.getPassword());
         login.clickSignIn();
-        General.checkUrl(driver,Urls.PRODUCTION_URL+ApiConstans.Endpoint.DASHBOARD);
+        General.checkUrl(Driver.getDriver(), Urls.PRODUCTION_URL + ApiConstans.Endpoint.DASHBOARD);
         General.checkMessage(dashboard.getHeadline(), Messages.BUY_SOME_STUFF_BRUH);
     }
 
     @AfterClass
-    public void closeAll(){
-        driver.quit();
+    public void closeAll() {
+        Driver.quit();
     }
 
 
