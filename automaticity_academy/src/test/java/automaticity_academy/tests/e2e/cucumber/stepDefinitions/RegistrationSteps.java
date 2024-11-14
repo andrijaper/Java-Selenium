@@ -1,7 +1,7 @@
 package automaticity_academy.tests.e2e.cucumber.stepDefinitions;
 
 import automaticity_academy.api.RegistrationApi;
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.constants.Messages;
 import automaticity_academy.constants.Urls;
 import automaticity_academy.constants.User;
@@ -11,6 +11,7 @@ import automaticity_academy.pom.RegistrationPage;
 import automaticity_academy.pom.base.Driver;
 import automaticity_academy.utils.General;
 import automaticity_academy.utils.JsonGenerator;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
@@ -29,13 +30,7 @@ public class RegistrationSteps {
     String email = General.generateRandomString(8) + "@test.com";
     String password = General.generateRandomString(8);
 
-    @When("I click on the registration button in navigation bar")
-    public void userClicksOnTheLoginButton() {
-        navbar.clickRegisterButton();
-        General.checkUrl(driver, Urls.PRODUCTION_URL + ApiConstans.Endpoint.REGISTER);
-    }
-
-    @When("I enter random {string} in the field")
+    @Given("I enter random {string} in the field")
     public void enterRandomField(String fieldType) {
         switch (fieldType) {
             case "username":
@@ -50,7 +45,7 @@ public class RegistrationSteps {
         }
     }
 
-    @When("I enter the {string} with blank space at the {string} in the field")
+    @Given("I enter the {string} with blank space at the {string} in the field")
     public void enterFieldWithSpace(String fieldType, String position) {
         switch (fieldType) {
             case "username":
@@ -77,7 +72,7 @@ public class RegistrationSteps {
         }
     }
 
-    @When("I check if John Doe user is registered")
+    @Given("I check if John Doe user is registered")
     public void isUserRegistered() {
         RegistrationApi registerApi = new RegistrationApi();
         String[][] user = User.generateUsersData(User.REGISTRATION_USER);
@@ -85,11 +80,11 @@ public class RegistrationSteps {
         Response response;
         do {
             response = registerApi.registerUser(bodyJson);
-        } while (response.getStatusCode() == ApiConstans.StatusAndCode.OK.getCode());
-        Assert.assertEquals(response.getStatusCode(), ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
+        } while (response.getStatusCode() == ApiConstants.StatusAndCode.OK.getCode());
+        Assert.assertEquals(response.getStatusCode(), ApiConstants.StatusAndCode.UNPROCESSABLE.getCode());
     }
 
-    @When("I enter the John Doe {string} in the field")
+    @Given("I enter the John Doe {string} in the field")
     public void enterJohnDoeCredentialsIntoField(String fieldType) {
         switch (fieldType) {
             case "username":
@@ -104,26 +99,32 @@ public class RegistrationSteps {
         }
     }
 
-    @When("I enter the username with 256 characters in the field")
-    public void enterCharactersInUsernameField() {
-        String exceedingUsernameLenght = General.generateRandomString(256);
+    @Given("I enter the username with {int} characters in the field")
+    public void enterCharactersInUsernameField(int length) {
+        String exceedingUsernameLenght = General.generateRandomString(length);
         register.enterUsername(exceedingUsernameLenght);
     }
 
-    @When("I enter six blank spaces in password field")
+    @Given("I enter six blank spaces in password field")
     public void enterSixBlankSpacesInPasswordField() {
         login.enterPassword("      ");
     }
 
-    @When("I enter five characters in password field")
+    @Given("I enter five characters in password field")
     public void enterFiveCharactersInPasswordField() {
         String fiveCharactersPassword = General.generateRandomString(5);
         login.enterPassword(fiveCharactersPassword);
     }
 
-    @When("I enter the invalid {string} in the field")
+    @Given("I enter the invalid {string} in the field")
     public void enterInvalidEmailInTheField(String email) {
         login.enterEmail(email);
+    }
+
+    @When("I click on the registration button in navigation bar")
+    public void userClicksOnTheLoginButton() {
+        navbar.getRegisterButton().click();
+        General.checkUrl(driver, Urls.PRODUCTION_URL + ApiConstants.Endpoint.REGISTER);
     }
 
     @When("I should see invalid {string} message {string}")
@@ -141,15 +142,14 @@ public class RegistrationSteps {
         }
     }
 
-    @Then("I should see success registration message")
-    public void isSuccessRegistrationMessageDisplayed() {
-        Assert.assertTrue(register.getSuccessRegistrationMessage().isDisplayed());
-        Assert.assertEquals(register.getSuccessRegistrationMessage().getText(), Messages.SUCCESSFULLY_REGISTERED);
-    }
-
     @When("I click on the register button")
     public void whenUserClickOnTheLoginButton() {
         register.getRegisterButton().click();
     }
 
+    @Then("I should see success registration message")
+    public void isSuccessRegistrationMessageDisplayed() {
+        Assert.assertTrue(register.getSuccessRegistrationMessage().isDisplayed());
+        Assert.assertEquals(register.getSuccessRegistrationMessage().getText(), Messages.SUCCESSFULLY_REGISTERED);
+    }
 }

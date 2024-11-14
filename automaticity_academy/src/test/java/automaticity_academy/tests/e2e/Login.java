@@ -1,6 +1,6 @@
 package automaticity_academy.tests.e2e;
 
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.constants.Messages;
 import automaticity_academy.constants.Urls;
 import automaticity_academy.constants.User;
@@ -9,7 +9,6 @@ import automaticity_academy.pom.LoginPage;
 import automaticity_academy.pom.base.Driver;
 import automaticity_academy.utils.General;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +32,7 @@ public class Login {
     public void openLoginPage() {
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.get(Urls.PRODUCTION_URL + ApiConstans.Endpoint.LOGIN);
+        driver.get(Urls.PRODUCTION_URL + ApiConstants.Endpoint.LOGIN);
     }
 
     @Test
@@ -41,7 +40,7 @@ public class Login {
         login.enterEmail(User.TEST_USER.getEmail());
         login.enterPassword(User.TEST_USER.getPassword());
         login.clickSignIn();
-        General.checkUrl(Driver.getDriver(), Urls.PRODUCTION_URL + ApiConstans.Endpoint.DASHBOARD);
+        General.checkUrl(Driver.getDriver(), Urls.PRODUCTION_URL + ApiConstants.Endpoint.DASHBOARD);
         General.checkMessage(dashboard.getHeadline(), Messages.BUY_SOME_STUFF_BRUH);
     }
 

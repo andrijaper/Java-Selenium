@@ -5,13 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import automaticity_academy.api.LoginApi;
-import automaticity_academy.api.LogoutApi;
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.constants.User;
 import automaticity_academy.utils.General;
 import automaticity_academy.utils.JsonGenerator;
@@ -39,9 +37,9 @@ public class Login {
         bodyJson = JsonGenerator.generateJson(user);
         bodyJson.remove("username");
         Response response = login.login(bodyJson, null, null);
-        login.checkStatusCode(response, ApiConstans.StatusAndCode.UNAUTHORIZED.getCode());
+        login.checkStatusCode(response, ApiConstants.StatusAndCode.UNAUTHORIZED.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.UNAUTHORIZED.getStatusMessage());
+            ApiConstants.StatusAndCode.UNAUTHORIZED.getStatusMessage());
     }
 
     @Test
@@ -52,9 +50,9 @@ public class Login {
             bodyJson = JsonGenerator.generateJson(user);
             bodyJson.remove("username");
             Response response = login.login(bodyJson, null, null);
-            login.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
+            login.checkStatusCode(response, ApiConstants.StatusAndCode.UNPROCESSABLE.getCode());
             login.checkStatusMessage(response,
-                ApiConstans.StatusAndCode.UNPROCESSABLE.getStatusMessage());
+                ApiConstants.StatusAndCode.UNPROCESSABLE.getStatusMessage());
         }
     }
 
@@ -63,11 +61,11 @@ public class Login {
         user = User.generateUsersDataForLogin(User.TEST_USER);
         bodyJson = JsonGenerator.generateJson(user);
         bodyJson.remove("username");
-        Response response = login.login(bodyJson, ApiConstans.HttpMethods.PATCH.getMethod(),
+        Response response = login.login(bodyJson, ApiConstants.HttpMethods.PATCH.getMethod(),
             null);
-        login.checkStatusCode(response, ApiConstans.StatusAndCode.METHOD_NOT_ALLOWED.getCode());
+        login.checkStatusCode(response, ApiConstants.StatusAndCode.METHOD_NOT_ALLOWED.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.METHOD_NOT_ALLOWED.getStatusMessage());
+            ApiConstants.StatusAndCode.METHOD_NOT_ALLOWED.getStatusMessage());
     }
 
     @Test
@@ -76,10 +74,10 @@ public class Login {
         bodyJson = JsonGenerator.generateJson(user);
         bodyJson.remove("username");
         Response response = login.login(bodyJson, null,
-            ApiConstans.Endpoint.LOGIN + ApiConstans.Endpoint.LOGIN);
-        login.checkStatusCode(response, ApiConstans.StatusAndCode.NOT_FOUND.getCode());
+            ApiConstants.Endpoint.LOGIN + ApiConstants.Endpoint.LOGIN);
+        login.checkStatusCode(response, ApiConstants.StatusAndCode.NOT_FOUND.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.NOT_FOUND.getStatusMessage());
+            ApiConstants.StatusAndCode.NOT_FOUND.getStatusMessage());
     }
 
     @Test
@@ -91,9 +89,9 @@ public class Login {
         bodyJson = JsonGenerator.generateJson(user);
         bodyJson.remove("username");
         Response response = login.login(bodyJson, null, null);
-        login.checkStatusCode(response, ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
+        login.checkStatusCode(response, ApiConstants.StatusAndCode.UNPROCESSABLE.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.UNPROCESSABLE.getStatusMessage());
+            ApiConstants.StatusAndCode.UNPROCESSABLE.getStatusMessage());
     }
 
     @Test
@@ -108,9 +106,9 @@ public class Login {
             bodyJson.remove("username");
             Response response = login.login(bodyJson, null, null);
             login.checkStatusCode(response,
-                ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
+                ApiConstants.StatusAndCode.UNPROCESSABLE.getCode());
             login.checkStatusMessage(response,
-                ApiConstans.StatusAndCode.UNPROCESSABLE.getStatusMessage());
+                ApiConstants.StatusAndCode.UNPROCESSABLE.getStatusMessage());
         }
     }
 
@@ -123,9 +121,9 @@ public class Login {
             bodyJson.remove("username");
             Response response = login.login(bodyJson, null, null);
             login.checkStatusCode(response,
-                ApiConstans.StatusAndCode.UNPROCESSABLE.getCode());
+                ApiConstants.StatusAndCode.UNPROCESSABLE.getCode());
             login.checkStatusMessage(response,
-                ApiConstans.StatusAndCode.UNPROCESSABLE.getStatusMessage());
+                ApiConstants.StatusAndCode.UNPROCESSABLE.getStatusMessage());
         }
     }
 
@@ -137,9 +135,9 @@ public class Login {
         bodyJson = JsonGenerator.generateJson(user);
         bodyJson.remove("username");
         Response response = login.login(bodyJson, null, null);
-        login.checkStatusCode(response, ApiConstans.StatusAndCode.UNAUTHORIZED.getCode());
+        login.checkStatusCode(response, ApiConstants.StatusAndCode.UNAUTHORIZED.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.UNAUTHORIZED.getStatusMessage());
+            ApiConstants.StatusAndCode.UNAUTHORIZED.getStatusMessage());
     }
 
     @Test
@@ -150,9 +148,9 @@ public class Login {
         bodyJson = JsonGenerator.generateJson(user);
         bodyJson.remove("username");
         Response response = login.login(bodyJson, null, null);
-        login.checkStatusCode(response, ApiConstans.StatusAndCode.UNAUTHORIZED.getCode());
+        login.checkStatusCode(response, ApiConstants.StatusAndCode.UNAUTHORIZED.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.UNAUTHORIZED.getStatusMessage());
+            ApiConstants.StatusAndCode.UNAUTHORIZED.getStatusMessage());
     }
 
     @Test
@@ -163,9 +161,9 @@ public class Login {
         bodyJson = JsonGenerator.generateJson(user);
         bodyJson.remove("username");
         Response response = login.login(bodyJson, null, null);
-        login.checkStatusCode(response, ApiConstans.StatusAndCode.UNAUTHORIZED.getCode());
+        login.checkStatusCode(response, ApiConstants.StatusAndCode.UNAUTHORIZED.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.UNAUTHORIZED.getStatusMessage());
+            ApiConstants.StatusAndCode.UNAUTHORIZED.getStatusMessage());
     }
 
     @Test
@@ -177,9 +175,9 @@ public class Login {
         bodyJson = JsonGenerator.generateJson(user);
         bodyJson.remove("username");
         Response response = login.login(bodyJson, null, null);
-        login.checkStatusCode(response, ApiConstans.StatusAndCode.UNAUTHORIZED.getCode());
+        login.checkStatusCode(response, ApiConstants.StatusAndCode.UNAUTHORIZED.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.UNAUTHORIZED.getStatusMessage());
+            ApiConstants.StatusAndCode.UNAUTHORIZED.getStatusMessage());
     }
 
     @Test
@@ -193,9 +191,9 @@ public class Login {
         bodyJson.put("email", User.TEST_USER.getEmail());
         login.checkIfUserIdLoggedIn(response, bodyJson);
         login.checkStatusCode(response,
-            ApiConstans.StatusAndCode.OK.getCode());
+            ApiConstants.StatusAndCode.OK.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.OK.getStatusMessage());
+            ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test
@@ -209,9 +207,9 @@ public class Login {
         bodyJson.put("email", User.TEST_USER.getEmail());
         login.checkIfUserIdLoggedIn(response, bodyJson);
         login.checkStatusCode(response,
-            ApiConstans.StatusAndCode.OK.getCode());
+            ApiConstants.StatusAndCode.OK.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.OK.getStatusMessage());
+            ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test
@@ -225,9 +223,9 @@ public class Login {
         bodyJson.put("email", User.TEST_USER.getEmail());
         login.checkIfUserIdLoggedIn(response, bodyJson);
         login.checkStatusCode(response,
-            ApiConstans.StatusAndCode.OK.getCode());
+            ApiConstants.StatusAndCode.OK.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.OK.getStatusMessage());
+            ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test
@@ -238,8 +236,8 @@ public class Login {
         token = login.getToken(response);
         login.checkIfUserIdLoggedIn(response, bodyJson);
         login.checkStatusCode(response,
-            ApiConstans.StatusAndCode.OK.getCode());
+            ApiConstants.StatusAndCode.OK.getCode());
         login.checkStatusMessage(response,
-            ApiConstans.StatusAndCode.OK.getStatusMessage());
+            ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 }

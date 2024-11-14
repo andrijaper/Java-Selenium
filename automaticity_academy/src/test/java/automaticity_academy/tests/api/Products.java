@@ -2,15 +2,13 @@ package automaticity_academy.tests.api;
 
 import org.json.JSONObject;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import automaticity_academy.api.LoginApi;
-import automaticity_academy.api.LogoutApi;
 import automaticity_academy.api.ProductsApi;
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.constants.User;
 import automaticity_academy.utils.General;
 import automaticity_academy.utils.JsonGenerator;
@@ -44,8 +42,8 @@ public class Products {
     public void showOneProduct() {
         id = String.valueOf(General.generateRandomIntNumber(5, 60));
         response = products.showOneProduct(id, token);
-        products.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        products.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        products.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        products.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test
@@ -54,14 +52,14 @@ public class Products {
         Response responseNewProduct = products.addNewProduct(bodyNewProduct, token);
         id = responseNewProduct.jsonPath().getString("product.id");
 
-        products.checkStatusCode(responseNewProduct, ApiConstans.StatusAndCode.OK.getCode());
-        products.checkStatusMessage(responseNewProduct, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        products.checkStatusCode(responseNewProduct, ApiConstants.StatusAndCode.OK.getCode());
+        products.checkStatusMessage(responseNewProduct, ApiConstants.StatusAndCode.OK.getStatusMessage());
 
         JSONObject bodyForUpdateProduct = products.generateRandomProductBody();
         Response responseUpdatedProduct = products.updateProduct(bodyForUpdateProduct, id, token);
 
-        products.checkStatusCode(responseUpdatedProduct, ApiConstans.StatusAndCode.OK.getCode());
-        products.checkStatusMessage(responseUpdatedProduct, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        products.checkStatusCode(responseUpdatedProduct, ApiConstants.StatusAndCode.OK.getCode());
+        products.checkStatusMessage(responseUpdatedProduct, ApiConstants.StatusAndCode.OK.getStatusMessage());
         Assert.assertNotEquals(bodyNewProduct.getString("name"),
             responseUpdatedProduct.jsonPath().getString("product.name"));
     }
@@ -72,16 +70,16 @@ public class Products {
         Response responseNewProduct = products.addNewProduct(bodyNewProduct, token);
         id = responseNewProduct.jsonPath().getString("product.id");
 
-        products.checkStatusCode(responseNewProduct, ApiConstans.StatusAndCode.OK.getCode());
-        products.checkStatusMessage(responseNewProduct, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        products.checkStatusCode(responseNewProduct, ApiConstants.StatusAndCode.OK.getCode());
+        products.checkStatusMessage(responseNewProduct, ApiConstants.StatusAndCode.OK.getStatusMessage());
 
         Response responseAfterRemoval = products.removeProduct(id, token);
-        products.checkStatusCode(responseAfterRemoval, ApiConstans.StatusAndCode.OK.getCode());
-        products.checkStatusMessage(responseAfterRemoval, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        products.checkStatusCode(responseAfterRemoval, ApiConstants.StatusAndCode.OK.getCode());
+        products.checkStatusMessage(responseAfterRemoval, ApiConstants.StatusAndCode.OK.getStatusMessage());
 
         response = products.showOneProduct(id, token);
-        products.checkStatusCode(response, ApiConstans.StatusAndCode.NOT_FOUND.getCode());
-        products.checkStatusMessage(response, ApiConstans.StatusAndCode.NOT_FOUND.getStatusMessage());
+        products.checkStatusCode(response, ApiConstants.StatusAndCode.NOT_FOUND.getCode());
+        products.checkStatusMessage(response, ApiConstants.StatusAndCode.NOT_FOUND.getStatusMessage());
     }
 
     @Test
@@ -90,8 +88,8 @@ public class Products {
         body = products.generateRandomProductBody();
         response = products.addNewProduct(body, token);
 
-        products.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        products.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        products.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        products.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
 
         Response numberOfProductsAfter = products.showAllProducts(token);
 
@@ -102,8 +100,8 @@ public class Products {
     @Test
     public void showAllProducts() {
         response = products.showAllProducts(token);
-        products.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        products.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        products.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        products.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
         Assert.assertFalse(response.jsonPath().getList("products").isEmpty());
     }
 }

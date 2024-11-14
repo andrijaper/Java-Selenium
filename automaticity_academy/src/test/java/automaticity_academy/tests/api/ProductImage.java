@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import automaticity_academy.api.LoginApi;
 import automaticity_academy.api.ProductImageApi;
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.constants.User;
 import automaticity_academy.utils.JsonGenerator;
 import io.restassured.response.Response;
@@ -40,22 +40,22 @@ public class ProductImage {
     public void addNewProductImage() {
         JSONObject body = pImage.generateProductImageBody();
         response = pImage.addNewProductImage(body, token);
-        pImage.checkStatusCode(response, ApiConstans.StatusAndCode.CREATED.getCode());
-        pImage.checkStatusMessage(response, ApiConstans.StatusAndCode.CREATED.getStatusMessage());
+        pImage.checkStatusCode(response, ApiConstants.StatusAndCode.CREATED.getCode());
+        pImage.checkStatusMessage(response, ApiConstants.StatusAndCode.CREATED.getStatusMessage());
     }
 
     @Test
     public void getOneProductImages() {
         response = pImage.showOneProductImage(id, token);
-        pImage.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        pImage.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        pImage.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        pImage.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test
     public void getAllProductImages() {
         response = pImage.getAllProductImages(token);
-        pImage.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        pImage.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        pImage.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        pImage.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
         Assert.assertFalse(response.jsonPath().getList("images").isEmpty());
     }
 
@@ -64,12 +64,12 @@ public class ProductImage {
         JSONObject body = pImage.generateProductImageBody();
         response = pImage.addNewProductImage(body, token);
         String newProductImageId = response.jsonPath().getString("product_image.id");
-        pImage.checkStatusCode(response, ApiConstans.StatusAndCode.CREATED.getCode());
-        pImage.checkStatusMessage(response, ApiConstans.StatusAndCode.CREATED.getStatusMessage());
+        pImage.checkStatusCode(response, ApiConstants.StatusAndCode.CREATED.getCode());
+        pImage.checkStatusMessage(response, ApiConstants.StatusAndCode.CREATED.getStatusMessage());
 
         response = pImage.removeProductImage(newProductImageId, token);
-        pImage.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        pImage.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        pImage.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        pImage.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
 }

@@ -3,7 +3,7 @@ package automaticity_academy.api;
 import org.json.JSONObject;
 import org.testng.Assert;
 
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import io.restassured.response.Response;
 
 public class LoginApi extends BaseApi {
@@ -13,17 +13,17 @@ public class LoginApi extends BaseApi {
     }
 
     public Response login(JSONObject body, String apiMethod, String Endpoint) {
-        String method = ApiConstans.HttpMethods.POST.getMethod();
-        String endpoint = "/auth"+ApiConstans.Endpoint.LOGIN;
+        String method = ApiConstants.HttpMethods.POST.getMethod();
+        String endpoint = "/auth" + ApiConstants.Endpoint.LOGIN;
         if (apiMethod != null) {
             method = apiMethod;
         } else if (Endpoint != null) {
             endpoint = Endpoint;
         }
         return sendApiRequest(method,
-                endpoint,
-                null,
-                body);
+            endpoint,
+            null,
+            body);
     }
 
     public void checkIfUserIdLoggedIn(Response response, JSONObject user) {

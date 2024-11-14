@@ -14,32 +14,35 @@ public class NavbarPage {
     private final By dashboardButtonLocator = By.xpath("//a[text()='Dashboard']");
     private final By registerButtonLocator = By.xpath("//a[text()='Register']");
     private final By loginButtonLocator = By.id("loginBtn");
+    private final By navbarDropdownMenuButton = By.cssSelector(".relative button");
+    private final By navbarDropdownMenu = By.className("absolute");
+    private final By navbarDropdownLogoutButton = By.xpath("//*[contains(@class,'absolute')]//button[text()='Log Out']");
 
     public NavbarPage() {
         this.driver = Driver.getDriver();
     }
 
     public WebElement getDashboardButton() {
-        return driver.findElement(dashboardButtonLocator);
+        return Waits.waitForElementClickability(driver, dashboardButtonLocator, Duration.ofSeconds(10));
     }
 
     public WebElement getRegisterButton() {
-        return driver.findElement(registerButtonLocator);
+        return Waits.waitForElementClickability(driver, registerButtonLocator, Duration.ofSeconds(10));
     }
 
     public WebElement getLoginButton() {
-        return driver.findElement(loginButtonLocator);
+        return Waits.waitForElementClickability(driver, loginButtonLocator, Duration.ofSeconds(10));
     }
 
-    public void clickLoginButton() {
-        Waits.waitForElementClickability(driver, loginButtonLocator, Duration.ofSeconds(10)).click();
+    public WebElement getNavbarDropdownMenuButton() {
+        return Waits.waitForElementClickability(driver, navbarDropdownMenuButton, Duration.ofSeconds(10));
     }
 
-    public void clickRegisterButton() {
-        Waits.waitForElementClickability(driver, registerButtonLocator, Duration.ofSeconds(10)).click();
+    public WebElement getNavbarDropdownMenu() {
+        return Waits.waitForElementVisibility(driver, navbarDropdownMenu, Duration.ofSeconds(10));
     }
 
-    public void clickDashboardButton() {
-        Waits.waitForElementClickability(driver, dashboardButtonLocator, Duration.ofSeconds(10)).click();
+    public WebElement getLogoutButton() {
+        return Waits.waitForElementVisibility(driver, navbarDropdownLogoutButton, Duration.ofSeconds(10));
     }
 }

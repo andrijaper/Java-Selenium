@@ -1,7 +1,8 @@
 package automaticity_academy.tests.e2e.cucumber.stepDefinitions;
 
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.constants.Urls;
+import automaticity_academy.constants.User;
 import automaticity_academy.pom.LoginPage;
 import automaticity_academy.pom.NavbarPage;
 import automaticity_academy.pom.base.Driver;
@@ -22,19 +23,28 @@ public class LoginSteps {
         driver.get(Urls.PRODUCTION_URL);
     }
 
-    @When("I click on the login button in navigation bar")
-    public void userClicksOnTheLoginButton() {
-        navbar.clickLoginButton();
+    @Given("I enter the password {string} in the field")
+    public void userEnterThePassword(String password) {
+        login.enterPassword(password);
     }
 
-    @When("I enter the email {string} in the field")
+    @Given("I enter the email {string} in the field")
     public void userEnterTheEmail(String email) {
         login.enterEmail(email);
     }
 
-    @When("I enter the password {string} in the field")
-    public void userEnterThePassword(String password) {
-        login.enterPassword(password);
+    @Given("Im logged into the Automaticity Academy Application")
+    public void logIn() {
+        navbar.getLoginButton().click();
+        login.enterEmail(User.TEST_USER.getEmail());
+        login.enterPassword(User.TEST_USER.getPassword());
+        login.clickSignIn();
+        General.checkUrl(driver, Urls.PRODUCTION_URL + ApiConstants.Endpoint.DASHBOARD);
+    }
+
+    @When("I click on the login button in navigation bar")
+    public void userClicksOnTheLoginButton() {
+        navbar.getLoginButton().click();
     }
 
     @When("I click on the sign in button")
@@ -47,9 +57,8 @@ public class LoginSteps {
         Assert.assertEquals(login.getInvalidFieldsMessage(), message);
     }
 
-
     @Then("I should be on Dashboard page")
     public void loginShouldBeSuccess() {
-        General.checkUrl(driver, Urls.PRODUCTION_URL + ApiConstans.Endpoint.DASHBOARD);
+        General.checkUrl(driver, Urls.PRODUCTION_URL + ApiConstants.Endpoint.DASHBOARD);
     }
 }

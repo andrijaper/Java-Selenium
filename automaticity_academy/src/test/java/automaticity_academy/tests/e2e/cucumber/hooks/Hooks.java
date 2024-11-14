@@ -18,16 +18,21 @@ public class Hooks {
         Driver.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
     }
 
+    @Before("@NavbarFeature")
+    public void goToHomePage() {
+        Driver.getDriver().get(Urls.PRODUCTION_URL);
+    }
+
     @Before("@LoginFeature")
     public void goToLoginForm() {
         Driver.getDriver().get(Urls.PRODUCTION_URL);
-        navbar.clickLoginButton();
+        navbar.getLoginButton().click();
     }
 
     @Before("@RegistrationFeature")
     public void goToRegistrationForm() {
         Driver.getDriver().get(Urls.PRODUCTION_URL);
-        navbar.clickRegisterButton();
+        navbar.getRegisterButton().click();
     }
 
     @After()

@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import automaticity_academy.api.CartApi;
 import automaticity_academy.api.LoginApi;
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.constants.User;
 import automaticity_academy.utils.General;
 import automaticity_academy.utils.JsonGenerator;
@@ -39,15 +39,15 @@ public class Cart {
     @Test
     public void showOneCart() {
         response = cart.showOneCart(id, token);
-        cart.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        cart.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        cart.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        cart.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test(enabled = false)
     public void removeCart() {
         response = cart.removeCart("65", token);
-        cart.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        cart.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        cart.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        cart.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test(enabled = false)
@@ -55,14 +55,14 @@ public class Cart {
         String productId = String.valueOf(General.generateRandomIntNumber(10, 30));
         String cartId = String.valueOf(General.generateRandomIntNumber(10, 30));
         response = cart.addProductIntoCart(cartId, productId, token);
-        cart.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        cart.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        cart.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        cart.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
 
         response = cart.showOneCart(cartId, token);
 
         // COMPLETE TEST AFTER API REQUEST IS FIXED - TEST SKIPPED
-        cart.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        cart.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        cart.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        cart.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test(enabled = false)
@@ -70,14 +70,14 @@ public class Cart {
         String productId = String.valueOf(General.generateRandomIntNumber(10, 30));
         String cartId = String.valueOf(General.generateRandomIntNumber(10, 30));
         response = cart.removeProductFromCart(cartId, productId, token);
-        cart.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        cart.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        cart.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        cart.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
 
         response = cart.showOneCart(cartId, token);
 
         // COMPLETE TEST AFTER API REQUEST IS FIXED - TEST SKIPPED
-        cart.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        cart.checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        cart.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        cart.checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
 }
