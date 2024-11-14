@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import automaticity_academy.api.LoginApi;
 import automaticity_academy.api.customersApi.ShippingInfoApi;
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.constants.ShippingInfoConst;
 import automaticity_academy.constants.User;
 import automaticity_academy.utils.JsonGenerator;
@@ -39,18 +39,18 @@ public class ShippingInfo {
     @Test
     public void shouldListCustomersBillingInfo() {
         Response response = shippingInfo.getShippingInfo(id, token);
-        shippingInfo.checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
+        shippingInfo.checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
         shippingInfo.checkStatusMessage(response,
-                ApiConstans.StatusAndCode.OK.getStatusMessage());
+            ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 
     @Test
     public void updateCustomersShippingInfo() {
         bodyJson = shippingInfo.generateShippingInfoBody(ShippingInfoConst.SHIPPING_INFO);
         Response responseUpdate = shippingInfo.updateShippingInfo(bodyJson, id, token);
-        shippingInfo.checkStatusCode(responseUpdate, ApiConstans.StatusAndCode.OK.getCode());
+        shippingInfo.checkStatusCode(responseUpdate, ApiConstants.StatusAndCode.OK.getCode());
         shippingInfo.checkStatusMessage(responseUpdate,
-                ApiConstans.StatusAndCode.OK.getStatusMessage());
+            ApiConstants.StatusAndCode.OK.getStatusMessage());
 
         Response responseGetUser = shippingInfo.getShippingInfo(id, token);
 

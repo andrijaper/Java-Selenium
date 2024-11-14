@@ -2,7 +2,7 @@ package automaticity_academy.api;
 
 import org.json.JSONObject;
 
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.utils.General;
 import io.restassured.response.Response;
 
@@ -12,25 +12,25 @@ public class ProductImageApi extends BaseApi {
     }
 
     public Response getAllProductImages(String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.Endpoint.PRODUCT_IMAGE, token,
-                null);
+        return sendApiRequest(ApiConstants.HttpMethods.GET.getMethod(), ApiConstants.Endpoint.PRODUCT_IMAGE, token,
+            null);
     }
 
     public Response addNewProductImage(JSONObject body, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(), ApiConstans.Endpoint.PRODUCT_IMAGE, token,
-                body);
+        return sendApiRequest(ApiConstants.HttpMethods.POST.getMethod(), ApiConstants.Endpoint.PRODUCT_IMAGE, token,
+            body);
     }
 
     public Response showOneProductImage(String id, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(),
-                ApiConstans.Endpoint.PRODUCT_IMAGE + "/" + id, token,
-                null);
+        return sendApiRequest(ApiConstants.HttpMethods.GET.getMethod(),
+            ApiConstants.Endpoint.PRODUCT_IMAGE + "/" + id, token,
+            null);
     }
 
     public Response removeProductImage(String id, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.DELETE.getMethod(),
-                ApiConstans.Endpoint.PRODUCT_IMAGE + "/" + id, token,
-                null);
+        return sendApiRequest(ApiConstants.HttpMethods.DELETE.getMethod(),
+            ApiConstants.Endpoint.PRODUCT_IMAGE + "/" + id, token,
+            null);
     }
 
     public JSONObject generateProductImageBody() {

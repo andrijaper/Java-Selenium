@@ -1,6 +1,6 @@
 package automaticity_academy.constants;
 
-public class ApiConstans {
+public class ApiConstants {
     public static class Endpoint {
         public static final String LOGIN = "/login";
         public static final String REGISTER = "/register";
@@ -26,7 +26,9 @@ public class ApiConstans {
         public String getMethod() {
             return this.method;
         }
-    };
+    }
+
+    ;
 
     public enum StatusAndCode {
         OK(200, "OK"),
@@ -52,6 +54,8 @@ public class ApiConstans {
         public String getStatusMessage() {
             return this.statusMessage;
         }
-    };
+    }
+
+    ;
 
 }

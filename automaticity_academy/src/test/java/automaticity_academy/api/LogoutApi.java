@@ -1,14 +1,14 @@
 package automaticity_academy.api;
 
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import io.restassured.response.Response;
 
 public class LogoutApi extends BaseApi {
 
     public void logout(String token) {
-        Response response = sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(), "/auth"+ApiConstans.Endpoint.LOGOUT,
-                token, null);
-        checkStatusCode(response, ApiConstans.StatusAndCode.OK.getCode());
-        checkStatusMessage(response, ApiConstans.StatusAndCode.OK.getStatusMessage());
+        Response response = sendApiRequest(ApiConstants.HttpMethods.POST.getMethod(), "/auth" + ApiConstants.Endpoint.LOGOUT,
+            token, null);
+        checkStatusCode(response, ApiConstants.StatusAndCode.OK.getCode());
+        checkStatusMessage(response, ApiConstants.StatusAndCode.OK.getStatusMessage());
     }
 }

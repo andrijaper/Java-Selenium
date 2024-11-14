@@ -2,7 +2,7 @@ package automaticity_academy.api;
 
 import org.json.JSONObject;
 
-import automaticity_academy.constants.ApiConstans;
+import automaticity_academy.constants.ApiConstants;
 import automaticity_academy.utils.General;
 import io.restassured.response.Response;
 
@@ -12,28 +12,28 @@ public class ProductsApi extends BaseApi {
     }
 
     public Response showAllProducts(String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.Endpoint.PRODUCTS, token, null);
+        return sendApiRequest(ApiConstants.HttpMethods.GET.getMethod(), ApiConstants.Endpoint.PRODUCTS, token, null);
     }
 
     public Response showOneProduct(String id, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.GET.getMethod(), ApiConstans.Endpoint.PRODUCTS + "/" + id,
-                token, null);
+        return sendApiRequest(ApiConstants.HttpMethods.GET.getMethod(), ApiConstants.Endpoint.PRODUCTS + "/" + id,
+            token, null);
     }
 
     public Response updateProduct(JSONObject body, String id, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.PUT.getMethod(), ApiConstans.Endpoint.PRODUCTS + "/" + id,
-                token, body);
+        return sendApiRequest(ApiConstants.HttpMethods.PUT.getMethod(), ApiConstants.Endpoint.PRODUCTS + "/" + id,
+            token, body);
     }
 
     public Response addNewProduct(JSONObject newProductBody, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.POST.getMethod(), ApiConstans.Endpoint.PRODUCTS, token,
-                newProductBody);
+        return sendApiRequest(ApiConstants.HttpMethods.POST.getMethod(), ApiConstants.Endpoint.PRODUCTS, token,
+            newProductBody);
     }
 
     public Response removeProduct(String id, String token) {
-        return sendApiRequest(ApiConstans.HttpMethods.DELETE.getMethod(), ApiConstans.Endpoint.PRODUCTS + "/" + id,
-                token,
-                null);
+        return sendApiRequest(ApiConstants.HttpMethods.DELETE.getMethod(), ApiConstants.Endpoint.PRODUCTS + "/" + id,
+            token,
+            null);
     }
 
     public JSONObject generateRandomProductBody() {
