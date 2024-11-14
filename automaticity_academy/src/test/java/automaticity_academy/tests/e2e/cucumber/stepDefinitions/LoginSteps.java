@@ -5,17 +5,10 @@ import automaticity_academy.constants.Urls;
 import automaticity_academy.pom.LoginPage;
 import automaticity_academy.pom.NavbarPage;
 import automaticity_academy.pom.base.Driver;
-import automaticity_academy.pom.base.Waits;
 import automaticity_academy.utils.General;
-import io.cucumber.java.After;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.time.Duration;
-
-import io.cucumber.java.Before;
 import org.testng.Assert;
 
 public class LoginSteps {
@@ -24,14 +17,14 @@ public class LoginSteps {
     NavbarPage navbar = new NavbarPage();
     LoginPage login = new LoginPage();
 
-    @Given("I am on the Academy Application Login window")
+    @Given("I am on the Academy Application")
     public void userNavigateToTheAcademyApplication() {
-        driver.get(Urls.PRODUCTION_URL + ApiConstans.Endpoint.LOGIN);
+        driver.get(Urls.PRODUCTION_URL);
     }
 
-    @When("I click on the login button")
+    @When("I click on the login button in navigation bar")
     public void userClicksOnTheLoginButton() {
-        navbar.getLoginButton();
+        navbar.clickLoginButton();
     }
 
     @When("I enter the email {string} in the field")
@@ -49,20 +42,11 @@ public class LoginSteps {
         login.clickSignIn();
     }
 
-    @Then("I should see invalid email {string}")
-    public void checkDisplayedEmailMessage(String message) {
-        Assert.assertEquals(login.getInvalidEmailMessage(), message);
-    }
-
-    @Then("I should see invalid password {string}")
-    public void checkDisplayedPasswordMessage(String message) {
-        Assert.assertEquals(login.getInvalidPasswordlMessage(), message);
-    }
-
     @Then("I should see invalid fields {string}")
     public void checkDisplayedFieldsMessage(String message) {
         Assert.assertEquals(login.getInvalidFieldsMessage(), message);
     }
+
 
     @Then("I should be on Dashboard page")
     public void loginShouldBeSuccess() {

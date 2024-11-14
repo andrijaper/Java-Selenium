@@ -52,10 +52,12 @@ public class LoginPage {
     }
 
     public void enterEmail(String email) {
+        getEmailField().clear();
         getEmailField().sendKeys(email);
     }
 
     public void enterPassword(String password) {
+        getPasswordField().clear();
         getPasswordField().sendKeys(password);
     }
 

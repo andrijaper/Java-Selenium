@@ -1,7 +1,5 @@
+@LoginFeature
 Feature: Academy Application test
-
-  Background:
-    Given I am on the Academy Application Login window
 
   Scenario Outline: Successfull login
     When I enter the email <email> in the field
@@ -19,7 +17,7 @@ Feature: Academy Application test
     When I enter the email <email> in the field
     And I enter the password "Janedoe@123" in the field
     And I click on the sign in button
-    Then I should see invalid email <message>
+    Then I should see invalid "email" message <message>
     Examples:
       | email          | message                                          |
       | ""             | "The email field is required."                   |
@@ -42,7 +40,7 @@ Feature: Academy Application test
     When I enter the email "jane@test.com" in the field
     And I enter the password "" in the field
     And I click on the sign in button
-    Then I should see invalid password "The password field is required."
+    Then I should see invalid "password" message "The password field is required."
 
   Scenario Outline:  Shouldn't login with invalid password provided
     When I enter the email "jane@test.com" in the field
