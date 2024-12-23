@@ -1,2 +1,7 @@
 .vscode
 .editorconfig
+.DS_store
+test-classes
+.idea
+cucumber.html
+.settings
