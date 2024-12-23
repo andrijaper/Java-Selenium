@@ -2,3 +2,4 @@
 .editorconfig
 .DS_store
 test-classes
+.idea
