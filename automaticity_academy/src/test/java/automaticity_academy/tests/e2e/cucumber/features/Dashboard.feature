@@ -23,7 +23,7 @@ Feature: Automaticity Academy
     And I click on page 6 in pagination bar
     And I check number of products on this page should be 12
     And I click on page 7 in pagination bar
-    Then I check number of products on this page should be 11
+    Then I check number of products on this page should be 12
 
   @HigherResolution
   Scenario: Should find all elements for each product
