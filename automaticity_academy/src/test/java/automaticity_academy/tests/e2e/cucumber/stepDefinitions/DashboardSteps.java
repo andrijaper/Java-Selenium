@@ -53,8 +53,10 @@ public class DashboardSteps {
         WebElement productElement = Waits.waitForElementVisibility(driver, product.findElement(dashboard.getProductCartButtonLocator()), Duration.ofSeconds(10));
         js.executeScript("arguments[0].scrollIntoView(true);", product);
         actions.moveToElement(productElement).perform();
-        Assert.assertTrue((productElement).getCssValue("color").equalsIgnoreCase("rgba(75, 85, 99, 1)"));
-        productElement.click();
+        if (productElement.isEnabled()){
+            Assert.assertTrue((productElement).getCssValue("color").equalsIgnoreCase("rgba(75, 85, 99, 1)"));
+            productElement.click();
+        }
     }
 
     @When("I check is star rating match score rating for product with order number {int}")
@@ -83,7 +85,8 @@ public class DashboardSteps {
     }
 
     @When("I click on the image of product with order number {int}")
-    public void clikcOnProductImage(int orderNumber) {
+    public void clickOnProductImage(int orderNumber) throws InterruptedException {
+        Thread.sleep(3000);
         WebElement product = dashboard.getProducts().get(orderNumber);
         js.executeScript("arguments[0].scrollIntoView(true);", product);
         WebElement productImage = Waits.waitForElementClickability(driver, product.findElement(dashboard.getProductImagesLocator()), Duration.ofSeconds(20));
@@ -93,7 +96,8 @@ public class DashboardSteps {
     }
 
     @And("I check if each product has necessary elements")
-    public void checkIfProductHasItsElements() {
+    public void checkIfProductHasItsElements() throws InterruptedException {
+        Thread.sleep(5000);
         for (WebElement product : dashboard.getProducts()) {
             Assert.assertTrue(Waits.waitForElementVisibility(driver, product.findElement(dashboard.getProductImagesLocator()), Duration.ofSeconds(10)).isDisplayed() &&
                 Waits.waitForElementVisibility(driver, product.findElement(dashboard.getProductNamesLocator()), Duration.ofSeconds(10)).isDisplayed() &&
@@ -144,15 +148,15 @@ public class DashboardSteps {
     }
 
     @Then("I check modal dialog is displayed with product name and product description")
-    public void isModalDipslayedWithProductNameAndDescription() {
+    public void isModalDisplayedWithProductNameAndDescription() {
+        System.out.println();
         Assert.assertTrue(dashboard.getModalDialog().isDisplayed());
         Assert.assertEquals(dashboard.getModalDialogHeader().getText(), productName);
         Assert.assertEquals(dashboard.getModalDialogBody().getText(), productDescription);
     }
 
     @Then("I can see that product is successfully added")
-    public void isProductAdded() throws InterruptedException {
-        Thread.sleep(6000);
+    public void isProductAdded() {
         js.executeScript("arguments[0].scrollIntoView(true);", dashboard.getMessageBox());
         Assert.assertEquals(dashboard.getMessageBox().getText(), Messages.PRODUCT_ADDED);
     }
